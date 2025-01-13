@@ -8,13 +8,10 @@ namespace CashMastersPOS.Utilities
 		{
 			var denominations = MoneyDenominations.GetDenomination(country);
 			List<double> result = new List<double>();
-            double change = Math.Round(payment - total,2);
+            double change = Math.Round(payment - total, 2);
 
             if (change.Equals(0))
-            {
-				result.Add(change);
 				return "0";
-            }
 
             double changeCondition = 0;
 			while (changeCondition < change)
