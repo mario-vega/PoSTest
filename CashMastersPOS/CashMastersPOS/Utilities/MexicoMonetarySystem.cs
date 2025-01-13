@@ -9,7 +9,7 @@
 
 		public List<double> GetCoins(List<double> values)
 		{
-			return values.Where(b => b <= 20).ToList();
+			return values.Where(b => b < 20).ToList();
 		}
 	}
 }

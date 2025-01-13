@@ -25,7 +25,8 @@ namespace CashMastersPOS.Database
 			new Product{ Id = 3, Name = "Cup", Price = 29.99 },
 			new Product{ Id = 4, Name = "Bubblegum", Price = 1.5  },
 			new Product{ Id = 5, Name = "Sugar", Price = 12.39 },
-			new Product{ Id = 6, Name = "Beer", Price = 49.99 } 
+			new Product{ Id = 6, Name = "Beer", Price = 49.99 },
+			new Product{ Id = 7, Name = "Speakers", Price = 50 }
 		};
 	}
 }

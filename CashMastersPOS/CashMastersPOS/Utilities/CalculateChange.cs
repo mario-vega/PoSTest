@@ -16,7 +16,7 @@ namespace CashMastersPOS.Utilities
             double changeCondition = 0;
 			while (changeCondition < change)
 			{
-				double remaining = change - changeCondition;
+				double remaining = Math.Round(change - changeCondition, 2);
 				double closest = 0;
 				closest = denominations.Where(m => m <= remaining).OrderDescending().First();
 				result.Add(closest);
@@ -31,14 +31,14 @@ namespace CashMastersPOS.Utilities
 			return Math.Round(amount / 0.05) * 0.05;
 		}
 
-		private static string DistributeMoney(List<double> denominations, string country)
+		private static string DistributeMoney(List<double> money, string country)
 		{
 			IMonetarySystem ms = MonetarySystemFactory.CreateMonetarySystem(country);
-			var bills = ms.GetBills(denominations);
-			var coins = ms.GetCoins(denominations);
+			var bills = ms.GetBills(money);
+			var coins = ms.GetCoins(money);
 
 			StringBuilder change = new StringBuilder();
-			change.Append($"Bills: {string.Join(", ", bills)}");
+			change.AppendLine($"Bills: {string.Join(", ", bills)}");
 			change.AppendLine($"Coins: {string.Join(", ", coins)}");
 
 			return change.ToString();
