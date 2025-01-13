@@ -65,13 +65,9 @@ namespace CashMastersPOS
 				if (!ValidatePayment(total)) return;
 
 				double payment = Math.Round(double.Parse(txtPayment.Text), 2);
-				var result = CalculateChange.ReturnChance(_country, payment, total);
-				StringBuilder change = new StringBuilder();
-				foreach (var item in result)
-				{
-					change.AppendLine(item.ToString());
-				}
-				MessageBox.Show(change.ToString(), "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				var result = CalculateChange.ReturnChange(_country, payment, total);
+
+				MessageBox.Show(result, "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (NoCountryConfiguredException ex)
 			{
