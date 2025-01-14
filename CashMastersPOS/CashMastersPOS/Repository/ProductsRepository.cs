@@ -7,6 +7,11 @@ namespace CashMastersPOS.Repository
 	{
         public ProductsRepository() { }
 
+        /// <summary>
+        /// Get a product that matches the id.
+        /// </summary>
+        /// <param name="id">Unique identifier of the product.</param>
+        /// <returns>A product object or null if no exists.</returns>
         public Product? GetById(int id)
         {
             var item = DatabaseSingleton.Instance.Products.FirstOrDefault(x => x.Id == id);

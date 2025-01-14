@@ -4,6 +4,13 @@ namespace CashMastersPOS.Utilities
 {
 	public static class CalculateChange
 	{
+		/// <summary>
+		/// Returns the change distibuted in the country denomination specified.
+		/// </summary>
+		/// <param name="country">Data configured in App.config file.</param>
+		/// <param name="payment">Amount given to calculate the return change.</param>
+		/// <param name="total">Sum of all the products price, used to calculate the return change.</param>
+		/// <returns></returns>
 		public static string ReturnChange(string country, double payment, double total)
 		{
 			var denominations = MoneyDenominations.GetDenomination(country);
@@ -26,11 +33,22 @@ namespace CashMastersPOS.Utilities
 			return DistributeMoney(result, country);
 		}
 
+		/// <summary>
+		/// Rounds up the given amount, used particularly for Mexico due the lowest cent denomination is '0.05'.
+		/// </summary>
+		/// <param name="amount"></param>
+		/// <returns></returns>
 		public static double RoundDecimals(double amount)
 		{
-			return Math.Round(amount / 0.05) * 0.05;
+			return Math.Ceiling(amount / 0.05) * 0.05;
 		}
 
+		/// <summary>
+		/// Distributes the money into bills and coins.
+		/// </summary>
+		/// <param name="money">List of denominations.</param>
+		/// <param name="country">Used to create an object depending on the value.</param>
+		/// <returns>Returns an appended string with the denominations.</returns>
 		private static string DistributeMoney(List<double> money, string country)
 		{
 			IMonetarySystem ms = MonetarySystemFactory.CreateMonetarySystem(country);

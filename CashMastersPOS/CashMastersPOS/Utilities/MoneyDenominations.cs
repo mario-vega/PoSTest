@@ -9,6 +9,13 @@ namespace CashMastersPOS.Utilities
 		public const string mx = "mx";
 		public const string us = "us";
 
+		/// <summary>
+		/// Get the whole list of denominations used on the country specified.
+		/// </summary>
+		/// <param name="country">Data configured in App.config file.</param>
+		/// <returns>A list of values with all the denominations.</returns>
+		/// <exception cref="NoCountryConfiguredException"></exception>
+		/// <exception cref="MoneyDenominationDoesNotExist"></exception>
 		public static List<double> GetDenomination(string country)
 		{
 			if (string.IsNullOrEmpty(country))
